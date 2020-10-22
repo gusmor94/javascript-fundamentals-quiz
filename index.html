@@ -8,9 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <div id="homepage" class="flex-column flex-center">
-            <h1 class="title" id="start-title">JavaScript Fundamentals Quiz!</h1>
-            <a href="quiz.html" class="btn">Start Quiz</a>
+        <div id="question-container" class="hidden">
+            <div id="question">Question</div>
+            <hr>
+            <div id="answers" class="button-grid">
+                <button class="btn">A</button>
+                <button class="btn">B</button>
+                <button class="btn">C</button>
+                <button class="btn">D</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="start-btn btn">Start</button>
+            <button class="next-btn btn hidden">Next</button>
         </div>
     </div>
 
