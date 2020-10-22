@@ -1,10 +1,11 @@
-var quizQuestionEl = document.querySelector(".quiz-question");
-var option1El = document.querySelector("#option1");
-var option2El = document.querySelector("#option2");
-var option3El = document.querySelector("#option3");
-var option4El = document.querySelector("#option4");
-var quizContainerEl = document.querySelector("#quiz-container");
-var score = 0;
+var startBtn = document.querySelector(".start-btn");
+var questionContainerEl = document.querySelector("#question-container");
+var questionEl = document.querySelector("#question");
+var answerButtonsEl = document.querySelector("#answers");
+var answerA = document.querySelector("#a");
+var answerB = document.querySelector("#b");
+var answerC = document.querySelector("#c");
+var answerD = document.querySelector("#d");
 
 var questions = [
     {   question: "Commonly used data types do NOT include:",
@@ -45,16 +46,32 @@ var questions = [
 ]
 
 // start quiz
-var startQuiz = function() {}
+var startQuiz = function() {
+    startBtn.classList.add("hidden");
+    questionContainerEl.classList.remove("hidden");
+    generateQuestion();
+}
 
 // generate question
-var generateQuestion = function() {}
+var generateQuestion = function() {
+    for (var i = 0; i < questions.length; i++) {
+        questionEl.textContent = questions[i].question;
+        answerA.textContent = questions[i].a;
+        answerB.textContent = questions[i].b;
+        answerC.textContent = questions[i].c;
+        answerD.textContent = questions[i].d;
+    }
+}
 
 // check if correct answer 
-var selectedAnswer = function() {}
+var selectedAnswer = function(event) {}
+
 
 // end quiz
 var endQuiz = function() {}
 
 // show highscores
 var highScores = function() {}
+
+// event listeners
+startBtn.addEventListener("click", startQuiz);
