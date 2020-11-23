@@ -1,70 +1,60 @@
 var startBtn = document.querySelector(".start-btn");
+var controlsEl = document.querySelector(".controls")
 var questionContainerEl = document.querySelector("#question-container");
 var questionEl = document.querySelector("#question");
-var answerButtonsEl = document.querySelector("#answers");
-var answerA = document.querySelector("#a");
-var answerB = document.querySelector("#b");
-var answerC = document.querySelector("#c");
-var answerD = document.querySelector("#d");
+var answerButtonsEl = document.querySelectorAll(".answer-btn");
+
 
 var questions = [
     {   question: "Commonly used data types do NOT include:",
-        a: "strings",
-        b: "booleans",
-        c: "alerts",
-        d: "numbers",
-        answer: 3,
+        choices: ["strings", "booleans", "alerts", "numbers"],
+        answer: "alerts",
     },
     {   question: "The condition in an if/else statement is encosed with ____.",
-        a: "quotes",
-        b: "curly brackets",
-        c: "parenthesis",
-        d: "square brackets",
-        answer: 3,
+        choices: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+        answer: "parenthesis",
     },
     {   question: "Arrays in JavaScript can be used to store _____.",
-        a: "numbers and strings",
-        b: "other arrays",
-        c: "booleans",
-        d: "all of the above",
-        answer: 4,
+        choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        answer: "all of the above",
     },
     {   question: "String values must be enclosed within _____ when being assigned to variables.",
-        a: "commas",
-        b: "curly brackets",
-        c: "quotes",
-        d: "parenthesis",
-        answer: 3,
+        choices: ["commas", "curly brackets", "quotes", "parenthesis"],
+        answer: "quotes",
     },
     {   question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        a: "JavaScript",
-        b: "terminal/bash",
-        c: "for loops",
-        d: "console log",
-        answer: 4,
+        choices: ["JavaScript", "terminal/bash", "for loops", "console log"],
+        answer: "console log",
     },
 ]
+var currentQuestion = 0
 
 // start quiz
 var startQuiz = function() {
-    startBtn.classList.add("hidden");
+    controlsEl.classList.add("hidden");
     questionContainerEl.classList.remove("hidden");
     generateQuestion();
 }
 
 // generate question
 var generateQuestion = function() {
-    for (var i = 0; i < questions.length; i++) {
-        questionEl.textContent = questions[i].question;
-        answerA.textContent = questions[i].a;
-        answerB.textContent = questions[i].b;
-        answerC.textContent = questions[i].c;
-        answerD.textContent = questions[i].d;
+    console.log("question working")
+    var newQuestion = questions[currentQuestion]
+    questionEl.textContent = newQuestion.question;
+    for (var i = 0; i < answerButtonsEl.length; i++) {
+        console.log("answers")
+        answerButtonsEl[i].textContent = newQuestion.choices[i]
+        answerButtonsEl[i].addEventListener("click", checkAnswer)
     }
 }
 
-// check if correct answer 
-var selectedAnswer = function(event) {}
+// check if chosen answer is the correct answer 
+var checkAnswer = function(event) {
+    var selectedAnswer = event.target.textContent
+    if (event.target.textContent === questions[currentQuestion].answer) {
+        console.log("correct!")
+    }
+}
 
 
 // end quiz

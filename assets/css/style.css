@@ -40,7 +40,7 @@ body {
     background-color: #b0c4de;
 }
 
-.start-btn, .next-btn {
+.start-btn {
     font-weight: bold;
     font-size: 20px;
     margin: 0 5px;

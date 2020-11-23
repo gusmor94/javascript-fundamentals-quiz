@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Fundamentals Quiz</title>
+    <title>Coding Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <div class="container">
+        <button class="highscore-btn"></button>
         <div id="question-container" class="hidden">
+
             <div id="question">Question</div>
             <hr>
             <div id="answers" class="button-grid">
-                <button id="a" class="btn">A</button>
-                <button id="b" class="btn">B</button>
-                <button id="c" class="btn">C</button>
-                <button id="d" class="btn">D</button>
+                <button class="answer-btn btn"></button>
+                <button class="answer-btn btn"></button>
+                <button class="answer-btn btn"></button>
+                <button class="answer-btn btn"></button>
             </div>
         </div>
         <div class="controls">
+            <h1>Click the start button to begin the quiz. Reminder, the quiz will be timed.</h1>
             <button class="start-btn btn">Start</button>
-            <button class="next-btn btn hidden">Next</button>
         </div>
     </div>
 
