@@ -24,6 +24,15 @@
             <h1>Click the start button to begin the quiz. Reminder, the quiz will be timed.</h1>
             <button class="start-btn btn">Start</button>
         </div>
+        <div id="quiz-over" class="hidden">
+            <h3>Quiz Completed!</h3>
+            <h4 id="final-score"></h4>
+            <form>
+                <label for="initals">Enter Initials:</label>
+                <input type="text" id="initials" name="initials">
+            </form>
+            <button type="submit" id="submit-btn">Submit</button>
+        </div>
     </div>
 
     <script src="assets/js/quiz.js"></script>

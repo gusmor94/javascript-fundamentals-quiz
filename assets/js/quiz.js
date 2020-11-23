@@ -3,6 +3,10 @@ var controlsEl = document.querySelector(".controls")
 var questionContainerEl = document.querySelector("#question-container");
 var questionEl = document.querySelector("#question");
 var answerButtonsEl = document.querySelectorAll(".answer-btn");
+var quizOverEl = document.querySelector("#quiz-over")
+var finalScore = document.querySelector("#final-score")
+var initialsInput = document.querySelector("#initials")
+var submitButton = document.querySelector("#submit-btn")
 
 
 var questions = [
@@ -28,6 +32,8 @@ var questions = [
     },
 ]
 var currentQuestion = 0
+var score = 0
+var timer = 60
 
 // start quiz
 var startQuiz = function() {
@@ -38,13 +44,17 @@ var startQuiz = function() {
 
 // generate question
 var generateQuestion = function() {
-    console.log("question working")
-    var newQuestion = questions[currentQuestion]
-    questionEl.textContent = newQuestion.question;
-    for (var i = 0; i < answerButtonsEl.length; i++) {
-        console.log("answers")
-        answerButtonsEl[i].textContent = newQuestion.choices[i]
-        answerButtonsEl[i].addEventListener("click", checkAnswer)
+    if (currentQuestion < questions.length) {
+        console.log("question working")
+        var newQuestion = questions[currentQuestion]
+        questionEl.textContent = newQuestion.question;
+        for (var i = 0; i < answerButtonsEl.length; i++) {
+            console.log("answers")
+            answerButtonsEl[i].textContent = newQuestion.choices[i]
+            answerButtonsEl[i].addEventListener("click", checkAnswer)
+        }
+    } else {
+        endQuiz()
     }
 }
 
@@ -53,15 +63,43 @@ var checkAnswer = function(event) {
     var selectedAnswer = event.target.textContent
     if (event.target.textContent === questions[currentQuestion].answer) {
         console.log("correct!")
+        score++ 
+        console.log(score)
+        currentQuestion++
+        generateQuestion(currentQuestion)
+    } else {
+        currentQuestion++
+        timer = timer - 10
+        generateQuestion(currentQuestion)
     }
 }
 
 
 // end quiz
-var endQuiz = function() {}
+var endQuiz = function() {
+    console.log("quiz over")
+    questionContainerEl.classList.add("hidden")
+    quizOverEl.classList.remove("hidden")
+    finalScore.textContent = "Your final score is " + score 
+    submitButton.addEventListener("click", highScores)
+}
 
 // show highscores
-var highScores = function() {}
+var highScores = function() {
+    if (initialsInput.value.length > 2) {
+        alert("Please only type two initials.")
+    }
+    var previousScores = localStorage.getItem("High Scores")
+    if (previousScores) {
+        previousScores = JSON.parse(previousScores)
+    } else {
+        previousScores = []
+    }
+
+    previousScores.push({Initials: initialsInput.value, Score: score})
+    localStorage.setItem("High Scores", JSON.stringify(previousScores))
+    initialsInput.value = ""
+}
 
 // event listeners
 startBtn.addEventListener("click", startQuiz);
