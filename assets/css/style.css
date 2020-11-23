@@ -48,9 +48,28 @@ body {
 }
 
 .controls {
+    text-align: center;
+}
+
+.controls h1 {
+    color: #778899;
+}
+
+#question {
+    text-align: center;
+    font-size: 20px;
+}
+
+#quiz-over {
+    text-align: center;
+    padding: 15px;
+}
+
+#score-form {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .hidden {

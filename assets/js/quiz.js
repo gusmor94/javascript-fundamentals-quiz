@@ -1,5 +1,6 @@
 var startBtn = document.querySelector(".start-btn");
 var controlsEl = document.querySelector(".controls")
+var timerEl = document.querySelector("#timer")
 var questionContainerEl = document.querySelector("#question-container");
 var questionEl = document.querySelector("#question");
 var answerButtonsEl = document.querySelectorAll(".answer-btn");
@@ -39,32 +40,37 @@ var timer = 60
 var startQuiz = function() {
     controlsEl.classList.add("hidden");
     questionContainerEl.classList.remove("hidden");
+    var timerInterval = setInterval(function() {
+        timerEl.textContent = "Time: " + timer
+        timer--
+        if (timer < 0 || timer === 0) {
+            clearInterval(timerInterval)
+            endQuiz()
+        }
+    }, 1000)
     generateQuestion();
 }
 
-// generate question
+// display quiz questions
 var generateQuestion = function() {
     if (currentQuestion < questions.length) {
-        console.log("question working")
         var newQuestion = questions[currentQuestion]
         questionEl.textContent = newQuestion.question;
+        // loop through answer buttons and dynamically add choices from questions array
         for (var i = 0; i < answerButtonsEl.length; i++) {
-            console.log("answers")
             answerButtonsEl[i].textContent = newQuestion.choices[i]
             answerButtonsEl[i].addEventListener("click", checkAnswer)
         }
     } else {
+        // if currentQuestion is greater than questions array, end quiz
         endQuiz()
     }
 }
 
 // check if chosen answer is the correct answer 
 var checkAnswer = function(event) {
-    var selectedAnswer = event.target.textContent
     if (event.target.textContent === questions[currentQuestion].answer) {
-        console.log("correct!")
         score++ 
-        console.log(score)
         currentQuestion++
         generateQuestion(currentQuestion)
     } else {
@@ -77,7 +83,7 @@ var checkAnswer = function(event) {
 
 // end quiz
 var endQuiz = function() {
-    console.log("quiz over")
+    // add hidden class to question container and display the quiz-over div
     questionContainerEl.classList.add("hidden")
     quizOverEl.classList.remove("hidden")
     finalScore.textContent = "Your final score is " + score 
@@ -86,20 +92,23 @@ var endQuiz = function() {
 
 // show highscores
 var highScores = function() {
+    // make sure user doesn't type too many letters
     if (initialsInput.value.length > 2) {
         alert("Please only type two initials.")
     }
+    // check to see if localStorage is empty
     var previousScores = localStorage.getItem("High Scores")
     if (previousScores) {
         previousScores = JSON.parse(previousScores)
     } else {
         previousScores = []
     }
-
+    // save score to local storage
     previousScores.push({Initials: initialsInput.value, Score: score})
     localStorage.setItem("High Scores", JSON.stringify(previousScores))
+    alert("Your score was saved!")
     initialsInput.value = ""
 }
 
-// event listeners
+
 startBtn.addEventListener("click", startQuiz);

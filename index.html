@@ -8,9 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <button class="highscore-btn"></button>
-        <div id="question-container" class="hidden">
+        
+        <div class="controls">
+            <h1>Coding Fundamentals Quiz</h1>
+            <h3>Click the start button to begin the quiz. Reminder, the quiz will be timed.</h3>
+            <button class="start-btn btn">Start</button>
+        </div>
 
+        <!--div is hidden until start button is clicked-->
+        <div id="question-container" class="hidden">
+            <h4 id="timer"></h4>
             <div id="question">Question</div>
             <hr>
             <div id="answers" class="button-grid">
@@ -20,19 +27,19 @@
                 <button class="answer-btn btn"></button>
             </div>
         </div>
-        <div class="controls">
-            <h1>Click the start button to begin the quiz. Reminder, the quiz will be timed.</h1>
-            <button class="start-btn btn">Start</button>
-        </div>
+        
+        <!--div is hidden until endQuiz function is called-->
         <div id="quiz-over" class="hidden">
             <h3>Quiz Completed!</h3>
             <h4 id="final-score"></h4>
-            <form>
+            <form id="score-form">
                 <label for="initals">Enter Initials:</label>
                 <input type="text" id="initials" name="initials">
+                <button type="submit" id="submit-btn">Submit</button>
             </form>
-            <button type="submit" id="submit-btn">Submit</button>
+            <a href="./index.html" class="btn">Go Back</a>
         </div>
+        
     </div>
 
     <script src="assets/js/quiz.js"></script>
