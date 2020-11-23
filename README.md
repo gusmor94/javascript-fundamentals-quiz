@@ -26,4 +26,7 @@ In the near future, I wish to add a high scores page, so that any user can see a
 * CSS 
 * JavaScript
 
+*Click the link below to see the quiz in action!*
+
+[Coding Fundamentals Quiz](https://gusmor94.github.io/javascript-fundamentals-quiz/)
 
